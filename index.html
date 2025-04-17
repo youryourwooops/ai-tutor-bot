@@ -11,48 +11,6 @@
     <textarea id="user-input" placeholder="Ask your tutor anything..."></textarea>
     <button id="send-btn">Send</button>
   </div>
-<<<<<<< HEAD:index.html
   <script src="script.js"></script>
-=======
-
-  <script>
-    const apiKey = 'sk-AqZOJUtAWtn6Uu52iecZoFecTcK3nDkPqSHpHVYhZjvzV5Fg';
-    const apiUrl = 'https://xiaoai.plus/';
-
-    async function sendMessage() {
-      const input = document.getElementById('userInput').value;
-      if (!input) return;
-      appendToChatLog("You", input);
-
-      const response = await fetch(apiUrl, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${apiKey}`
-        },
-        body: JSON.stringify({
-          model: "gpt-4",
-          messages: [
-            { role: "system", content: "You are a helpful AI tutor assisting students with questions from their course materials." },
-            { role: "user", content: input }
-          ]
-        })
-      });
-
-      const data = await response.json();
-      const aiMessage = data.choices[0].message.content;
-      appendToChatLog("Tutor", aiMessage);
-      document.getElementById('userInput').value = '';
-    }
-
-    function appendToChatLog(sender, message) {
-      const chatlog = document.getElementById("chatlog");
-      const entry = document.createElement("p");
-      entry.innerHTML = `<strong>${sender}:</strong> ${message}`;
-      chatlog.appendChild(entry);
-      chatlog.scrollTop = chatlog.scrollHeight;
-    }
-  </script>
->>>>>>> fe6fbd494ee9ee0add7203d10b3cf6744abe1cc7:index.html
 </body>
 </html>

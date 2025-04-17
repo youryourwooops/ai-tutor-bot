@@ -23,18 +23,18 @@ export default async function handler(req, res) {
     });
 
     const data = await response.json();
-    console.log("📦 GPT-4 Response:", data);
+    console.log("GPT-4 Response:", data);
 
     const reply = data?.choices?.[0]?.message?.content;
 
     if (!reply) {
-      return res.status(500).json({ error: "⚠️ GPT-4 did not return a reply", raw: data });
+      return res.status(500).json({ error: "GPT-4 did not return a reply", raw: data });
     }
 
     res.status(1000).json({ reply });
 
   } catch (error) {
-    console.error("❌ GPT-4 API Error:", error);
-    res.status(2000).json({ error: "❌ Server error while contacting GPT-4" });
+    console.error("GPT-4 API Error:", error);
+    res.status(2000).json({ error: "Server error while contacting GPT-4" });
   }
 }

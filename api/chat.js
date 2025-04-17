@@ -15,7 +15,7 @@ export default async function handler(req, res) {
       body: JSON.stringify({
         prompt: message,
         model: "gemini-pro",
-        redirect: "https://your-vercel-app.vercel.app/thanks", // optional redirect URL
+        redirect: "https://ai-tutor-bot.vercel.app/", // optional redirect URL
       }),
     });
 

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>AI Tutor</title>
+  <style>
+    body { font-family: sans-serif; background: #f4f4f4; padding: 20px; }
+    #chatbox { max-width: 600px; margin: auto; background: #fff; padding: 20px; border-radius: 12px; box-shadow: 0 0 10px rgba(0,0,0,0.1); }
+    #chatlog { max-height: 400px; overflow-y: auto; margin-bottom: 10px; }
+    #chatlog p { margin: 5px 0; }
+    input, button { padding: 10px; font-size: 16px; }
+    input { width: 70%; }
+    button { width: 25%; }
+  </style>
+</head>
+<body>
+  <div id="chatbox">
+    <div id="chatlog"></div>
+    <input id="userInput" placeholder="Ask me anything..." />
+    <button onclick="sendMessage()">Send</button>
+  </div>
+
+  <script>
+    const apiKey = 'YOUR_API_KEY';
+    const apiUrl = 'https://api.openai.com/v1/chat/completions';
+
+    async function sendMessage() {
+      const input = document.getElementById('userInput').value;
+      if (!input) return;
+      appendToChatLog("You", input);
+
+      const response = await fetch(apiUrl, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${apiKey}`
+        },
+        body: JSON.stringify({
+          model: "gpt-4",
+          messages: [
+            { role: "system", content: "You are a helpful AI tutor assisting students with questions from their course materials." },
+            { role: "user", content: input }
+          ]
+        })
+      });
+
+      const data = await response.json();
+      const aiMessage = data.choices[0].message.content;
+      appendToChatLog("Tutor", aiMessage);
+      document.getElementById('userInput').value = '';
+    }
+
+    function appendToChatLog(sender, message) {
+      const chatlog = document.getElementById("chatlog");
+      const entry = document.createElement("p");
+      entry.innerHTML = `<strong>${sender}:</strong> ${message}`;
+      chatlog.appendChild(entry);
+      chatlog.scrollTop = chatlog.scrollHeight;
+    }
+  </script>
+</body>
+</html>

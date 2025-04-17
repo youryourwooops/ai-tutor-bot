@@ -22,7 +22,7 @@
 
   <script>
     const apiKey = 'sk-AqZOJUtAWtn6Uu52iecZoFecTcK3nDkPqSHpHVYhZjvzV5Fg';
-    const apiUrl = 'https://xiaoai.plus/v1/';
+    const apiUrl = 'https://xiaoai.plus/v1';
 
     async function sendMessage() {
       const input = document.getElementById('userInput').value;
@@ -36,7 +36,7 @@
           "Authorization": `Bearer ${apiKey}`
         },
         body: JSON.stringify({
-          model: "gpt-4",
+          model: "gemini-2.0-pro-exp",
           messages: [
             { role: "system", content: "You are a helpful AI tutor assisting students with questions from their course materials." },
             { role: "user", content: input }

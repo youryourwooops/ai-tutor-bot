@@ -10,18 +10,22 @@ export default async function handler(req, res) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer sk-AqZOJUtAWtn6Uu52iecZoFecTcK3nDkPqSHpHVYhZjvzV5Fg`, // You need to set this in Vercel
+        Authorization: `Bearer ${process.env.sk-AqZOJUtAWtn6Uu52iecZoFecTcK3nDkPqSHpHVYhZjvzV5Fg}` // Or hardcode for testing
+        // Example: Authorization: 'Bearer YOUR_REAL_API_KEY',
       },
       body: JSON.stringify({
         prompt: message,
         model: "gemini-pro",
-        redirect: "https://ai-tutor-bot.vercel.app/", // optional redirect URL
+        temperature: 0.7
       }),
     });
 
     const data = await response.json();
+    console.log("Gemini API Raw Response:", data); // 👈 DEBUG OUTPUT
 
-    const reply = data.result || data.response || "No reply received.";
+    // Try to use different keys based on actual response structure
+    const reply = data?.response || data?.result || data?.message || "⚠️ No valid response field";
+
     res.status(200).json({ reply });
 
   } catch (error) {

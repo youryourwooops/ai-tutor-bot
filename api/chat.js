@@ -15,7 +15,7 @@ export default async function handler(req, res) {
       },
       body: JSON.stringify({
         prompt: message,
-        model: "gemini-pro",
+        model: "gemini-2.0-pro-exp",
         temperature: 0.7
       }),
     });

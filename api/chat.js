@@ -10,26 +10,26 @@ export default async function handler(req, res) {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
-        Authorization: `Bearer ${process.env.sk-AqZOJUtAWtn6Uu52iecZoFecTcK3nDkPqSHpHVYhZjvzV5Fg}` // Or hardcode for testing
-        // Example: Authorization: 'Bearer YOUR_REAL_API_KEY',
+        'Authorization': `Bearer ${process.env.sk-AqZOJUtAWtn6Uu52iecZoFecTcK3nDkPqSHpHVYhZjvzV5Fg}`,  // Add your real API key here!
       },
       body: JSON.stringify({
         prompt: message,
-        model: "gemini-2.0-pro-exp",
-        temperature: 0.7
+        model: "gemini-2.0-pro-exp",  // Specify the Gemini version you're using
+        temperature: 0.7,
+        redirect_url: "https://ai-tutor-bot.vercel.app/"  // Optional redirect URL
       }),
     });
 
     const data = await response.json();
-    console.log("Gemini API Raw Response:", data); // 👈 DEBUG OUTPUT
 
-    // Try to use different keys based on actual response structure
-    const reply = data?.response || data?.result || data?.message || "⚠️ No valid response field";
-
-    res.status(200).json({ reply });
+    if (data && data.result) {
+      res.status(200).json({ reply: data.result });
+    } else {
+      res.status(500).json({ error: "Failed to receive a valid response from Gemini" });
+    }
 
   } catch (error) {
     console.error("Gemini API Error:", error);
-    res.status(500).json({ error: 'Something went wrong talking to Gemini' });
+    res.status(500).json({ error: 'Something went wrong while contacting Gemini' });
   }
 }

@@ -1,37 +1,31 @@
-document.getElementById("send-btn").addEventListener("click", async () => {
-  const input = document.getElementById("user-input");
-  const message = input.value.trim();
-  if (!message) return;
+document.getElementById("send").addEventListener("click", async () => {
+  const input = document.getElementById("input").value;
+  const chatBox = document.getElementById("chat");
 
-  appendToChat("You", message);
-  input.value = "";
+  if (!input) return;
 
-  appendToChat("AI", "Thinking...");
+  chatBox.innerHTML += `<div class="user">🧍‍♂️ ${input}</div>`;
+  document.getElementById("input").value = "";
 
   try {
-    const response = await fetch("/api/chat", {
+    const res = await fetch("/api/chat", {
       method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ message })
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({ message: input })
     });
 
-    const data = await response.json();
-    updateLastMessage("AI", data.reply);
+    const data = await res.json();
+
+    if (data.reply) {
+      chatBox.innerHTML += `<div class="bot">🤖 ${data.reply}</div>`;
+    } else {
+      chatBox.innerHTML += `<div class="bot">⚠️ No reply received</div>`;
+      console.warn("No reply:", data);
+    }
   } catch (err) {
-    updateLastMessage("AI", "Sorry, something went wrong.");
+    chatBox.innerHTML += `<div class="bot">❌ Sorry, something went wrong.</div>`;
+    console.error("Fetch error:", err);
   }
 });
-
-function appendToChat(sender, message) {
-  const chatLog = document.getElementById("chat-log");
-  const messageDiv = document.createElement("div");
-  messageDiv.innerHTML = `<strong>${sender}:</strong> ${message}`;
-  chatLog.appendChild(messageDiv);
-  chatLog.scrollTop = chatLog.scrollHeight;
-}
-
-function updateLastMessage(sender, message) {
-  const chatLog = document.getElementById("chat-log");
-  const messages = chatLog.querySelectorAll("div");
-  messages[messages.length - 1].innerHTML = `<strong>${sender}:</strong> ${message}`;
-}

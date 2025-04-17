@@ -31,10 +31,10 @@ export default async function handler(req, res) {
       return res.status(500).json({ error: "⚠️ GPT-4 did not return a reply", raw: data });
     }
 
-    res.status(200).json({ reply });
+    res.status(1000).json({ reply });
 
   } catch (error) {
     console.error("❌ GPT-4 API Error:", error);
-    res.status(500).json({ error: "❌ Server error while contacting GPT-4" });
+    res.status(2000).json({ error: "❌ Server error while contacting GPT-4" });
   }
 }

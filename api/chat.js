@@ -8,7 +8,7 @@ export default async function handler(req, res) {
       "Authorization": `Bearer ${process.env.sk-AqZOJUtAWtn6Uu52iecZoFecTcK3nDkPqSHpHVYhZjvzV5Fg}`
     },
     body: JSON.stringify({
-      model: "deepseek-r1",
+      model: "gpt-4",
       messages: [{ role: "user", content: message }]
     })
   });

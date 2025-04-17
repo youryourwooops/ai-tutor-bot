@@ -8,7 +8,7 @@ export default async function handler(req, res) {
       "Authorization": `Bearer ${process.env.sk-AqZOJUtAWtn6Uu52iecZoFecTcK3nDkPqSHpHVYhZjvzV5Fg}`
     },
     body: JSON.stringify({
-      model: "gemini-2.0-pro-exp",
+      model: "deepseek-r1",
       messages: [{ role: "user", content: message }]
     })
   });

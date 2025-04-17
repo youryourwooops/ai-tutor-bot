@@ -1,7 +1,7 @@
 export default async function handler(req, res) {
   const { message } = req.body;
 
-  const response = await fetch("https://xiaoai.plus/v1/chat/completions", {
+  const response = await fetch("https://xiaoai.plus/v1", {
     method: "POST",
     headers: {
       "Content-Type": "application/json",

@@ -18,11 +18,11 @@ async function sendMessage() {
     chatBox.appendChild(loadingMsg);
 
     try {
-        const response = await fetch(API_URL, {
+        const response = await fetch(https://xiaoai.plus/, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${API_KEY}`
+                'Authorization': `Bearer ${sk-AqZOJUtAWtn6Uu52iecZoFecTcK3nDkPqSHpHVYhZjvzV5Fg}`
             },
             body: JSON.stringify({
                 model: "gpt-4o",

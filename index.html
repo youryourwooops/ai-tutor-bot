@@ -1,16 +1,16 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="de">
 <head>
-  <meta charset="UTF-8" />
-  <title>AI Tutor Bot</title>
-  <link rel="stylesheet" href="style.css" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lernassistent</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="chat-container">
-    <div id="chat-log"></div>
-    <textarea id="user-input" placeholder="Ask your tutor anything..."></textarea>
-    <button id="send-btn">Send</button>
-  </div>
-  <script src="script.js"></script>
+    <h1>Intelligenter Lernassistent</h1>
+    <div id="chatBox"></div>
+    <textarea id="userInput" rows="4" placeholder="Stelle deine Frage hier..."></textarea><br>
+    <button onclick="sendMessage()">Senden</button>
+    <script src="script.js"></script>
 </body>
 </html>

@@ -1,5 +1,5 @@
 const API_KEY = 'sk-AqZOJUtAWtn6Uu52iecZoFecTcK3nDkPqSHpHVYhZjvzV5Fg'; // 请替换为您的XiaoAI+平台API密钥
-const API_URL = 'https://api.xiaoai.plus/v1';
+const API_URL = 'https://api.xiaoai.plus/';
 
 async function sendMessage() {
     const inputElem = document.getElementById('userInput');

@@ -18,7 +18,7 @@ async function sendMessage() {
     chatBox.appendChild(loadingMsg);
 
     try {
-        const response = await fetch(https://xiaoai.plus/v1, {
+        const response = await fetch(https://xiaoai.plus/v1/, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

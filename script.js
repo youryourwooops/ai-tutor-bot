@@ -1,4 +1,4 @@
-const API_KEY = 'IHR_API_SCHLÜSSEL'; // 请替换为您的XiaoAI+平台API密钥
+const API_KEY = 'sk-AqZOJUtAWtn6Uu52iecZoFecTcK3nDkPqSHpHVYhZjvzV5Fg'; // 请替换为您的XiaoAI+平台API密钥
 const API_URL = 'https://api.xiaoai.plus/v1/chat/completions';
 
 async function sendMessage() {
@@ -18,11 +18,11 @@ async function sendMessage() {
     chatBox.appendChild(loadingMsg);
 
     try {
-        const response = await fetch(https://xiaoai.plus/v1/, {
+        const response = await fetch(API_URL, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
-                'Authorization': `Bearer ${sk-AqZOJUtAWtn6Uu52iecZoFecTcK3nDkPqSHpHVYhZjvzV5Fg}`
+                'Authorization': `Bearer ${API_KEY}`
             },
             body: JSON.stringify({
                 model: "gpt-4o",
